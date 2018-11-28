@@ -22,6 +22,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<maven-jgit-buildnumber-plugin.version>1.2.10</maven-jgit-buildnumber-plugin.version>
+		<maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+		<maven-scm-plugin.version>1.11.1</maven-scm-plugin.version>
+		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+		<versions-maven-plugin.version>2.7</versions-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -30,14 +35,14 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 
@@ -47,8 +52,54 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>ru.concerteza.buildnumber</groupId>
+				<artifactId>maven-jgit-buildnumber-plugin</artifactId>
+				<version>${maven-jgit-buildnumber-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>git-buildnumber</id>
+						<goals>
+							<goal>extract-buildnumber</goal>
+						</goals>
+						<phase>prepare-package</phase>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- specify manifest fields -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin.version}</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Copyright>(c) Code.Hub 2018</Copyright>
+							<Specification-Title>${project.name}</Specification-Title>
+							<Specification-Version>${project.version}</Specification-Version>
+							<Specification-Vendor>Code.Hub</Specification-Vendor>
+							<Implementation-Title>${project.groupId}.${project.artifactId}</Implementation-Title>
+							<Implementation-Version>${git.revision}</Implementation-Version>
+							<Implementation-Vendor>Code.Hub</Implementation-Vendor>
+							<X-Git-Branch>${git.branch}</X-Git-Branch>
+							<X-Git-Tag>${git.tag}</X-Git-Tag>
+							<X-Git-Commits-Count>${git.commitsCount}</X-Git-Commits-Count>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>${maven-scm-plugin.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>${versions-maven-plugin.version}</version>
+			</plugin>
 		</plugins>
+		<defaultGoal>clean package</defaultGoal>
 	</build>
-
-
 </project>

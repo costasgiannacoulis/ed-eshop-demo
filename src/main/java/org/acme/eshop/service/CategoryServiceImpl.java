@@ -6,7 +6,7 @@ import org.acme.eshop.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("categoryService")
 public class CategoryServiceImpl extends AbstractService<Category> implements CategoryService {
 	@Autowired
 	private CategoryRepository categoryRepository;

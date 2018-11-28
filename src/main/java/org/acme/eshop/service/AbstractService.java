@@ -2,11 +2,22 @@ package org.acme.eshop.service;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.acme.eshop.model.BaseEntity;
 import org.acme.eshop.repository.BaseRepository;
+import org.slf4j.Logger;
 
 public abstract class AbstractService<T extends BaseEntity> implements BaseService<T, Long> {
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(AbstractService.class);
+
 	public abstract BaseRepository<T, Long> getRepository();
+
+	@PostConstruct
+	private void init() {
+		log.debug("Starting service {}.", this.getClass().getName());
+	}
+
 
 	@Override
 	public T create(final T entity) {
@@ -44,15 +55,4 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	public List<T> findAll() {
 		return getRepository().findAll();
 	}
-
-//	private T locate(final Long id) {
-//		final Optional<T> entityOptional = getRepository().findById(id);
-//
-//		if (!entityOptional.isPresent()) {
-//			entityOptional
-//				.orElseThrow(() -> new ResourceNotFoundException(String.format("Object with id %d was not found.",
-//																			   id)));
-//		}
-//		return entityOptional.get();
-//	}
 }

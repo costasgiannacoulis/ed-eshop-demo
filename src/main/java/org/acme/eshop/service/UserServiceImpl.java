@@ -6,7 +6,7 @@ import org.acme.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userService")
 public class UserServiceImpl extends AbstractService<User> implements UserService {
 	@Autowired
 	private UserRepository userRepository;

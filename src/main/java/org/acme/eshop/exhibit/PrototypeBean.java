@@ -13,8 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Scope("prototype")
 public class PrototypeBean {
-	private String key;
-	private String value;
 
 	@PostConstruct
 	private void init() {

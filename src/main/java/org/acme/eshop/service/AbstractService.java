@@ -15,7 +15,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 
 	@PostConstruct
 	private void init() {
-		log.debug("Starting service {}.", this.getClass().getName());
+		log.debug("Starting {}.", this.getClass().getName());
 	}
 
 

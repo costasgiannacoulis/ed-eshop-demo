@@ -1,8 +1,8 @@
 # European Dynamics - Code.hub E-Shop demo project
-A sample project to demonstrate the capabilities of the **Spring framework** and **Spring Boot**. This project will also act as the basis of upcoming coming labs covering areas such as **Spring Data** and **Spring REST**.
+A sample project to demonstrate the capabilities of the **Spring Framework** and **Spring Boot**. This project will also act as the basis of upcoming coming labs covering areas such as **Spring Data** and **Spring REST**.
 
 ###  1st Lab objectives
-1. Spring Boot eshop sample project (org.acme:eshop:2018-1-SNAPSHOT)
+1. Spring Boot eshop sample project (org.acme:eshop:2018.1.0.SNAPSHOT)
 2. Define domain model (User, Order, OrderItem, Category, Product)
 3. Define Service Layer (Interfaces)
 4. Define Repository (Interfaces and dummy implementation)

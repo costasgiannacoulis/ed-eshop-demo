@@ -7,9 +7,10 @@ import javax.annotation.PostConstruct;
 import org.acme.eshop.model.BaseEntity;
 import org.acme.eshop.repository.BaseRepository;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractService<T extends BaseEntity> implements BaseService<T, Long> {
-	private static final Logger log = org.slf4j.LoggerFactory.getLogger(AbstractService.class);
+	private static final Logger log = LoggerFactory.getLogger(AbstractService.class);
 
 	public abstract BaseRepository<T, Long> getRepository();
 

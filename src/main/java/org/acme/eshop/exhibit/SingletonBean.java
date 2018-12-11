@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-@NoArgsConstructor
 @ConditionalOnExpression("${mine.samplekey} == 15")
 public class SingletonBean {
 	@Autowired

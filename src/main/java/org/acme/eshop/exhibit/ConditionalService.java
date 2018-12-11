@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 @ConditionalOnClass(UserServiceImpl.class)
-@ConditionalOnMissingClass(value = {"org.acme.eshop.exhibit.ExperimentService"})
+@ConditionalOnMissingClass(value = {"org.acme.eshop.exhibit.ExperimentService.class"})
 public class ConditionalService {
 	@PostConstruct
 	private void init() {

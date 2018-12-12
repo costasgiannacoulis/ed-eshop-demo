@@ -27,7 +27,7 @@ public abstract class AbstractRepository<T extends BaseEntity> implements BaseRe
 	}
 	@Override
 	public T create(final T entity) {
-		final Long key = getSequence().getAndIncrement();
+		final Long key = getSequence().incrementAndGet();
 		entity.setId(key);
 		STORAGE.put(key, entity);
 		return entity;

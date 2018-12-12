@@ -1,16 +1,16 @@
 package org.acme.eshop.repository;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import org.acme.eshop.model.Order;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrderRepositoryImpl extends AbstractRepository<Order> implements OrderRepository {
-	private final AtomicLong SEQUENCE = new AtomicLong(1);
+	@Value("${repository.order.sequence.start}")
+	private Long seed;
 
 	@Override
-	public AtomicLong getSequence() {
-		return SEQUENCE;
+	public Long getSeed() {
+		return seed;
 	}
 }

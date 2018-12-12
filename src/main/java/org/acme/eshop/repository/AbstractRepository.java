@@ -7,13 +7,24 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
+
 import org.acme.eshop.model.BaseEntity;
 
 public abstract class AbstractRepository<T extends BaseEntity> implements BaseRepository<T, Long> {
 	private final Map<Long, T> STORAGE = new LinkedHashMap();
+	private final AtomicLong SEQUENCE = new AtomicLong(1);
 
-	public abstract AtomicLong getSequence();
+	public abstract Long getSeed();
 
+	@PostConstruct
+	public void initialize() {
+		getSequence().set(getSeed());
+	}
+
+	public AtomicLong getSequence() {
+		return SEQUENCE;
+	}
 	@Override
 	public T create(final T entity) {
 		final Long key = getSequence().getAndIncrement();

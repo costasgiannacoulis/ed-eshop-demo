@@ -2,7 +2,6 @@ package org.acme.eshop.bootstrap;
 
 import java.util.List;
 
-import org.acme.eshop.model.Order;
 import org.acme.eshop.model.Product;
 import org.acme.eshop.model.User;
 import org.acme.eshop.service.CategoryService;
@@ -55,14 +54,6 @@ public class DataLoader implements ApplicationRunner {
 		log.debug("Create sample orders");
 		for (int i = 0; i < 100; i++) {
 			orderService.create(createOrder(registeredUsers, products));
-		}
-
-		for (final Product product : productService.findAll()) {
-			log.debug(product.toString());
-		}
-		for (final Order order : orderService.findAll()) {
-			log.debug("{} with {} items submitted at {} by {} {}.", order.getId(), order.getOrderItems().size(),
-					  order.getOrderDate(), order.getUser().getFirstname(), order.getUser().getLastname());
 		}
 	}
 }

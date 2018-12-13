@@ -29,7 +29,7 @@ public class ScheduledDataLoaderAndRetriever {
 	@Autowired
 	UserService userService;
 
-	@Scheduled(cron = "*/30 * * * * *")
+	@Scheduled(cron = "0 */1 * * * *")
 	public void createUsers() {
 		userService.create(createUser());
 	}
@@ -44,14 +44,22 @@ public class ScheduledDataLoaderAndRetriever {
 		productService.create(createProduct());
 	}
 
-	@Scheduled(cron = "*/10 * * * * *")
+	@Scheduled(cron = "*/20 * * * * *")
 	public void createrOrders() {
 		orderService.create(createOrder(userService.findAll(), productService.findAll()));
 	}
 
-	@Scheduled(cron = "*/15 * * * * *")
+	@Scheduled(cron = "*/30 * * * * *")
 	public void getContentStats() {
 		log.debug("Users: {}, Categories: {}, Products: {}, Orders: {}.", userService.findAll().size(),
 				  categoryService.findAll().size(), productService.findAll().size(), orderService.findAll().size());
+	}
+
+	@Scheduled(cron = "*/10 * * * * *")
+	public void testAsync() {
+		categoryService.checkAsync();
+		productService.checkAsync();
+		orderService.checkAsync();
+		userService.checkAsync();
 	}
 }

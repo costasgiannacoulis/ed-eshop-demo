@@ -1,6 +1,7 @@
 package org.acme.eshop.service;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public interface BaseService<T, N> {
 	T create(final T entity);
@@ -16,4 +17,8 @@ public interface BaseService<T, N> {
 	T get(N id);
 
 	List<T> findAll();
+
+	CompletableFuture<List<T>> findAllAsync();
+
+	void checkAsync();
 }

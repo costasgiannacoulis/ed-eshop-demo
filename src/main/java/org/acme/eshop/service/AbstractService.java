@@ -1,6 +1,7 @@
 package org.acme.eshop.service;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import javax.annotation.PostConstruct;
 
@@ -8,9 +9,10 @@ import org.acme.eshop.model.BaseEntity;
 import org.acme.eshop.repository.BaseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Async;
 
 public abstract class AbstractService<T extends BaseEntity> implements BaseService<T, Long> {
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+	protected Logger log = LoggerFactory.getLogger(this.getClass());
 
 	public abstract BaseRepository<T, Long> getRepository();
 
@@ -59,5 +61,17 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	public List<T> findAll() {
 		log.debug("Retrieving all entities.");
 		return getRepository().findAll();
+	}
+
+	@Override
+	@Async("asyncExecutor")
+	public CompletableFuture<List<T>> findAllAsync() {
+		return CompletableFuture.completedFuture(getRepository().findAll());
+	}
+
+	@Override
+	@Async("asyncExecutor")
+	public void checkAsync() {
+		log.debug("Running asynchronously.");
 	}
 }

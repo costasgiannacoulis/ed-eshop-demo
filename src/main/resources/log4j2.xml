@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}" />
+		</Console>
+
+		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
+		<RollingRandomAccessFile name="RollingRandomAccessFileAppender"
+			fileName="logs/eshop-demo.log"
+			filePattern="logs/eshop-demo-%d{yyyy-MM-dd_hh-mm}_%i.zip">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<SizeBasedTriggeringPolicy size="50KB" />
+			</Policies>
+			<DefaultRolloverStrategy max="10" />
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<AsyncLogger name="org.acme.eshop.service" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="RollingRandomAccessFileAppender" />
+		</AsyncLogger>
+		<AsyncLogger name="org.acme.eshop.repository" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="RollingRandomAccessFileAppender" />
+		</AsyncLogger>
+
+		<Root level="info">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="RollingRandomAccessFileAppender" />
+		</Root>
+	</Loggers>
+</Configuration>

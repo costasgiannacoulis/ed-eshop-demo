@@ -22,7 +22,7 @@ import static org.acme.eshop.util.ContentGenerator.createProduct;
 import static org.acme.eshop.util.ContentGenerator.createUser;
 
 @Component
-@Profile("runners")
+@Profile("bootstrap")
 @Slf4j
 public class DataLoader implements ApplicationRunner {
 	@Autowired
@@ -37,7 +37,7 @@ public class DataLoader implements ApplicationRunner {
 	@Override
 	public void run(final ApplicationArguments args) {
 		log.debug("Create sample users");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
 			userService.create(createUser());
 		}
 		log.debug("Create sample categories");
@@ -45,14 +45,14 @@ public class DataLoader implements ApplicationRunner {
 			categoryService.create(createCategory());
 		}
 		log.debug("Create sample products");
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 10; i++) {
 			productService.create(createProduct());
 		}
 
 		final List<User> registeredUsers = userService.findAll();
 		final List<Product> products = productService.findAll();
 		log.debug("Create sample orders");
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 10; i++) {
 			orderService.create(createOrder(registeredUsers, products));
 		}
 	}

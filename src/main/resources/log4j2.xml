@@ -26,11 +26,15 @@
 	</Appenders>
 
 	<Loggers>
+		<AsyncLogger name="org.acme.eshop.schedule" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="RollingRandomAccessFileAppender" />
+		</AsyncLogger>
 		<AsyncLogger name="org.acme.eshop.service" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender" />
 			<AppenderRef ref="RollingRandomAccessFileAppender" />
 		</AsyncLogger>
-		<AsyncLogger name="org.acme.eshop.repository" level="debug" additivity="false">
+		<AsyncLogger name="org.acme.eshop.repository" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender" />
 			<AppenderRef ref="RollingRandomAccessFileAppender" />
 		</AsyncLogger>

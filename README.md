@@ -2,17 +2,25 @@
 A sample project to demonstrate the capabilities of the **Spring Framework** and **Spring Boot**. This project will also act as the basis of upcoming coming labs covering areas such as **Spring Data** and **Spring REST**.
 
 ###  1st Lab objectives
-1. Spring Boot eshop sample project (org.acme:eshop:2018.1.0.SNAPSHOT)
-2. Define domain model (User, Order, OrderItem, Category, Product)
-3. Define Service Layer (Interfaces)
-4. Define Repository (Interfaces and dummy implementation)
-5. Define Service Layer (Implementation)
-6. Declare DI
-7. Check Qualifier vs Primary
-8. Load Services with specific order (@see https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/annotation/Order.html), prefer using @DependsOn
-9. Test conditional loading using ConditionalOnClass, ConditionalOnMissingClass, @ConditionalOnProperty, ConditionalOnExpression
-10. Create a custom bean in prototype scope
-11. Create a custom bean in singleton scope
+1. Spring Boot eshop sample project (org.acme:eshop:2018.1.0.SNAPSHOT).
+2. Define domain model (User, Order, OrderItem, Category, Product).
+3. Define Service Layer (Interfaces).
+4. Define Repository (Interfaces and dummy implementation).
+5. Define Service Layer (Implementation).
+6. Declare DI.
+7. Check Qualifier vs Primary.
+8. Load Services with specific order (@see https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/core/annotation/Order.html), prefer using @DependsOn.
+9. Test conditional loading using ConditionalOnClass, ConditionalOnMissingClass, @ConditionalOnProperty, ConditionalOnExpression.
+10. Create a custom bean in prototype scope.
+11. Create a custom bean in singleton scope.
+
+###  2nd Lab objectives
+1. Externalize part of the application to properties(i.e. sequence initial values).
+2. Load data to repositories (i.e. create bootstrap profile).
+3. Specific logging level to service and repository layers.
+4. Configure specific log appender and rotation policy.
+5. Schedule methods to create entities of a given type and one method to retrieve them (i.e. create schedule profile).
+6. Async sample implementation.
 
 ##  Appendix A
 ### SpEL

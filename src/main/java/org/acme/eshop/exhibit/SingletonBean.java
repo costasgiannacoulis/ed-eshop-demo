@@ -5,11 +5,13 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Component
+@Profile("exhibit")
 @Slf4j
 @ConditionalOnExpression("${mine.samplekey} == 15")
 public class SingletonBean {

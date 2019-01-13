@@ -1,7 +1,7 @@
 # European Dynamics - Code.hub E-Shop demo project
 A sample project to demonstrate the capabilities of the **Spring Framework** and **Spring Boot**. This project will also act as the basis of upcoming coming labs covering areas such as **Spring Data** and **Spring REST**.
 
-###  1st Lab objectives
+###  1st lab objectives
 1. Spring Boot eshop sample project (org.acme:eshop:2018.1.0.SNAPSHOT).
 2. Define domain model (User, Order, OrderItem, Category, Product).
 3. Define Service Layer (Interfaces).
@@ -14,13 +14,23 @@ A sample project to demonstrate the capabilities of the **Spring Framework** and
 10. Create a custom bean in prototype scope.
 11. Create a custom bean in singleton scope.
 
-###  2nd Lab objectives
+###  2nd lab objectives
 1. Externalize part of the application to properties(i.e. sequence initial values).
 2. Load data to repositories (i.e. create bootstrap profile).
 3. Specific logging level to service and repository layers.
 4. Configure specific log appender and rotation policy.
 5. Schedule methods to create entities of a given type and one method to retrieve them (i.e. create schedule profile).
 6. Async sample implementation.
+
+###  3rd lab objectives
+1. Introduce Spring Data JPA and H2.
+2. Annotate accordingly entities and define database schema.
+3. Define relations among entities.
+4. Introduce new repository layer substituting existing.
+5. Load sample data.
+6. Expose functionality as Rest Services.
+7. Utilize RestTemplate to call public APis.
+
 
 ##  Appendix A
 ### SpEL

@@ -12,9 +12,11 @@ import org.acme.eshop.repository.OrderRepository;
 import org.acme.eshop.repository.ProductRepository;
 import org.acme.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+@Profile("async")
 @Service
 public class AsyncServiceImpl {
 	@Autowired

@@ -40,6 +40,13 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	}
 
 	@Override
+	public void deleteById(final Long id) {
+		final T entityFound = getRepository().getOne(id);
+		log.debug("Deleting {}.", entityFound);
+		getRepository().deleteById(id);
+	}
+
+	@Override
 	public void delete(final T entity) {
 		log.debug("Deleting {}.", entity);
 		getRepository().delete(entity);

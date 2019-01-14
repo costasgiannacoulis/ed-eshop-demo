@@ -6,15 +6,15 @@ import java.util.concurrent.CompletableFuture;
 import javax.annotation.PostConstruct;
 
 import org.acme.eshop.model.BaseEntity;
-import org.acme.eshop.repository.BaseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.scheduling.annotation.Async;
 
 public abstract class AbstractService<T extends BaseEntity> implements BaseService<T, Long> {
 	protected Logger log = LoggerFactory.getLogger(this.getClass());
 
-	public abstract BaseRepository<T, Long> getRepository();
+	public abstract JpaRepository<T, Long> getRepository();
 
 	@PostConstruct
 	private void init() {
@@ -30,13 +30,13 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	@Override
 	public T create(final T entity) {
 		log.debug("Creating {}.", entity);
-		return getRepository().create(entity);
+		return getRepository().save(entity);
 	}
 
 	@Override
 	public void update(final T entity) {
 		log.debug("Updating {}.", entity);
-		getRepository().update(entity);
+		getRepository().save(entity);
 	}
 
 	@Override
@@ -48,13 +48,13 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	@Override
 	public boolean exists(final T entity) {
 		log.debug("Checking whether {} exists.", entity);
-		return getRepository().exists(entity);
+		return getRepository().existsById(entity.getId());
 	}
 
 	@Override
 	public T get(final Long id) {
 		log.debug("Retrieving entity with id {}.", id);
-		return getRepository().get(id);
+		return getRepository().getOne(id);
 	}
 
 	@Override

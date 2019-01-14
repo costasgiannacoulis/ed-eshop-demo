@@ -1,10 +1,10 @@
 package org.acme.eshop.service;
 
 import org.acme.eshop.model.Product;
-import org.acme.eshop.repository.BaseRepository;
 import org.acme.eshop.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service("productService")
@@ -14,7 +14,7 @@ public class ProductServiceImpl extends AbstractService<Product> implements Prod
 	private ProductRepository productRepository;
 
 	@Override
-	public BaseRepository<Product, Long> getRepository() {
+	public JpaRepository<Product, Long> getRepository() {
 		return productRepository;
 	}
 }

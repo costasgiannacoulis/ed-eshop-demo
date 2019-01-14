@@ -1,9 +1,9 @@
 package org.acme.eshop.service;
 
 import org.acme.eshop.model.User;
-import org.acme.eshop.repository.BaseRepository;
 import org.acme.eshop.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -12,7 +12,7 @@ public class UserServiceImpl extends AbstractService<User> implements UserServic
 	private UserRepository userRepository;
 
 	@Override
-	public BaseRepository<User, Long> getRepository() {
+	public JpaRepository<User, Long> getRepository() {
 		return userRepository;
 	}
 }

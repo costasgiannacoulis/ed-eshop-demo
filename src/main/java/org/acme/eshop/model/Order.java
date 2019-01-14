@@ -30,15 +30,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "orderItems")
 @EqualsAndHashCode(callSuper = true)
 public class Order extends BaseEntity {
 	private static final long serialVersionUID = -7235073958033713360L;
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 	@NotNull
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date orderDate;
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, targetEntity = OrderItem.class, fetch = FetchType.LAZY,

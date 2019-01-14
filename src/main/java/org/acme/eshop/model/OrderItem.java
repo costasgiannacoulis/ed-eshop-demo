@@ -25,7 +25,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = "order")
 @EqualsAndHashCode(callSuper = true)
 public class OrderItem extends BaseEntity {
 	private static final long serialVersionUID = 5350412371242272001L;

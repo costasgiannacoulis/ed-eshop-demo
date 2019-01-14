@@ -1,12 +1,7 @@
 package org.acme.eshop.model;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -38,7 +33,4 @@ public class User extends BaseEntity {
 	@NotNull
 	@Column(length = 100)
 	private String email;
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, targetEntity = Order.class, fetch = FetchType.LAZY,
-		orphanRemoval = true)
-	private List<Order> orders;
 }

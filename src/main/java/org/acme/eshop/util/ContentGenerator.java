@@ -32,22 +32,23 @@ public class ContentGenerator {
 	public static User createUser() {
 		final String firstName = LOREM.getFirstName();
 		final String lastName = LOREM.getLastName();
-		return User.builder().firstname(firstName).lastname(lastName).email(String.format("%s.%s@example.com",
-																						  firstName, lastName)).build();
+		return User.builder().firstname(firstName).lastname(lastName).email(
+			String.format("%s.%s@example.com", firstName, lastName)).build();
 	}
 
 	public static Order createOrder(final List<User> users, final List<Product> products) {
+		final Order newOrder = Order.builder().user(getRandomUser(users)).orderDate(getRandomDate()).build();
 		final List<OrderItem> orderItems = new ArrayList<>();
 		for (int i = 0; i < ThreadLocalRandom.current().nextInt(1, 6); i++) {
 			final Product selectedProduct = getRandomProduct(products);
 
 			final OrderItem newOrderItem = OrderItem.builder().description(selectedProduct.getDescription()).price(
-				selectedProduct.getPrice())
-													.quantity(ThreadLocalRandom.current().nextInt(1, 3)).build();
+				selectedProduct.getPrice()).quantity(ThreadLocalRandom.current().nextInt(1, 3)).order(newOrder).build();
 			orderItems.add(newOrderItem);
 		}
+		newOrder.setOrderItems(orderItems);
 
-		return Order.builder().user(getRandomUser(users)).orderDate(getRandomDate()).orderItems(orderItems).build();
+		return newOrder;
 	}
 
 	private static BigDecimal getRandomPrice() {
@@ -67,11 +68,9 @@ public class ContentGenerator {
 	}
 
 	private static Date getRandomDate() {
-		final ZonedDateTime fromZdt = LocalDateTime.of(2018, 1, 1, 0, 0, 0)
-												   .atZone(ZoneId.of("Europe/Athens"));
+		final ZonedDateTime fromZdt = LocalDateTime.of(2018, 1, 1, 0, 0, 0).atZone(ZoneId.of("Europe/Athens"));
 		final Long fromInMillis = fromZdt.toInstant().toEpochMilli();
-		final ZonedDateTime toZdt = LocalDateTime.of(2018, 11, 30, 23, 59, 59)
-												 .atZone(ZoneId.of("Europe/Athens"));
+		final ZonedDateTime toZdt = LocalDateTime.of(2018, 11, 30, 23, 59, 59).atZone(ZoneId.of("Europe/Athens"));
 		final Long toInMillis = toZdt.toInstant().toEpochMilli();
 
 		return new Date(ThreadLocalRandom.current().nextLong(fromInMillis, toInMillis));

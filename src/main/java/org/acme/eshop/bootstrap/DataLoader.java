@@ -8,7 +8,6 @@ import org.acme.eshop.model.Category;
 import org.acme.eshop.model.Order;
 import org.acme.eshop.model.Product;
 import org.acme.eshop.model.User;
-import org.acme.eshop.service.AsyncServiceImpl;
 import org.acme.eshop.service.CategoryService;
 import org.acme.eshop.service.OrderService;
 import org.acme.eshop.service.ProductService;
@@ -38,8 +37,6 @@ public class DataLoader implements ApplicationRunner {
 	ProductService productService;
 	@Autowired
 	UserService userService;
-	@Autowired
-	AsyncServiceImpl asyncService;
 
 	@Override
 	public void run(final ApplicationArguments args) throws ExecutionException, InterruptedException {

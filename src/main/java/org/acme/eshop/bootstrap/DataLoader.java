@@ -48,9 +48,10 @@ public class DataLoader implements ApplicationRunner {
 		for (int i = 0; i < 5; i++) {
 			categoryService.create(createCategory());
 		}
+		final List<Category> categories = categoryService.findAll();
 		log.debug("Create sample products");
 		for (int i = 0; i < 10; i++) {
-			productService.create(createProduct());
+			productService.create(createProduct(categories));
 		}
 
 		final List<User> registeredUsers = userService.findAll();

@@ -25,8 +25,9 @@ public class ContentGenerator {
 		return Category.builder().description(LOREM.getWords(1, 3)).build();
 	}
 
-	public static Product createProduct() {
-		return Product.builder().description(LOREM.getWords(2, 4)).price(getRandomPrice()).build();
+	public static Product createProduct(final List<Category> categories) {
+		return Product.builder().description(LOREM.getWords(2, 4)).price(getRandomPrice()).category(
+			getRandomCategory(categories)).build();
 	}
 
 	public static User createUser() {
@@ -61,6 +62,10 @@ public class ContentGenerator {
 
 	private static Product getRandomProduct(final List<Product> products) {
 		return products.get(ThreadLocalRandom.current().nextInt(products.size()));
+	}
+
+	private static Category getRandomCategory(final List<Category> categories) {
+		return categories.get(ThreadLocalRandom.current().nextInt(categories.size()));
 	}
 
 	private static User getRandomUser(final List<User> users) {

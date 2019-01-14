@@ -41,7 +41,7 @@ public class ScheduledDataLoaderAndRetriever {
 
 	@Scheduled(cron = "0 */1 * * * *")
 	public void createProducts() {
-		productService.create(createProduct());
+		productService.create(createProduct(categoryService.findAll()));
 	}
 
 	@Scheduled(cron = "*/20 * * * * *")

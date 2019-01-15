@@ -27,6 +27,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 			create(entity);
 		}
 	}
+
 	@Override
 	public T create(final T entity) {
 		log.debug("Creating {}.", entity);
@@ -61,7 +62,14 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	@Override
 	public T get(final Long id) {
 		log.debug("Retrieving entity with id {}.", id);
-		return getRepository().getOne(id);
+		/*
+		 * T findOne(ID id) (name in the old API) / Optional<T> findById(ID id) (name in the new API) relies on
+		 * EntityManager.find() that performs an entity eager loading.
+		 *
+		 * T getOne(ID id) relies on EntityManager.getReference() that performs an entity lazy loading. So to ensure
+		 * the effective loading of the entity, invoking a method on it is required.
+		 */
+		return getRepository().findById(id).get();
 	}
 
 	@Override

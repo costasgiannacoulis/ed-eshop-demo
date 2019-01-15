@@ -11,6 +11,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +40,8 @@ public class OrderItem extends BaseEntity {
 	@NotNull
 	@Column
 	private Integer quantity;
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JsonBackReference("orderItems")
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "order_id", nullable = false)
 	private Order order;
 }

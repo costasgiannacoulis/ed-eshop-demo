@@ -16,6 +16,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,11 +40,13 @@ public class Order extends BaseEntity {
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
 	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column
 	private Date orderDate;
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, targetEntity = OrderItem.class, fetch = FetchType.LAZY,
+	@JsonManagedReference("orderItems")
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, targetEntity = OrderItem.class, fetch = FetchType.EAGER,
 		orphanRemoval = true)
 	private List<OrderItem> orderItems;
 }

@@ -33,8 +33,8 @@ A sample project to demonstrate the capabilities of the **Spring Framework** and
 
 ###  4th lab objectives
 1. Add Swagger support.
-2. Create a universal structure format for both answers and exceptions
-3. Define specific locales, enable header locale resolver and enable Resource bundles
+2. Create a universal structure format for both answers and exceptions.
+3. Define specific locales, enable header locale resolver and enable resource bundles.
 4. Select specific controller methods, add a second version of these and then add filtering.
 
 

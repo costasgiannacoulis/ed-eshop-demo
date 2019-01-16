@@ -31,6 +31,12 @@ A sample project to demonstrate the capabilities of the **Spring Framework** and
 6. Expose functionality as Rest Services.
 7. Utilize RestTemplate to call public APis.
 
+###  4th lab objectives
+1. Add Swagger support.
+2. Create a universal structure format for both answers and exceptions
+3. Define specific locales, enable header locale resolver and enable Resource bundles
+4. Select specific controller methods, add a second version of these and then add filtering.
+
 
 ##  Appendix A
 ### SpEL

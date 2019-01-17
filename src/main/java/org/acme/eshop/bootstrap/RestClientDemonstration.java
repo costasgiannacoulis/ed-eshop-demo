@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Profile("bootstrap")
+@Profile("revisit")
 @Slf4j
 public class RestClientDemonstration implements ApplicationRunner {
 	@Override

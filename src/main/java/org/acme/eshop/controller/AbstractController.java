@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.acme.eshop.model.BaseEntity;
+import org.acme.eshop.model.system.ApiResponse;
 import org.acme.eshop.service.BaseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,23 +18,27 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public abstract class AbstractController<T extends BaseEntity> {
 	protected abstract BaseService<T, Long> getBaseService();
 
 	@GetMapping("/{id}")
-	public T get(@PathVariable("id") final Long id) {
-		return getBaseService().get(id);
+	public ResponseEntity<ApiResponse> get(@PathVariable("id") final Long id) {
+		return new ResponseEntity<>(ApiResponse.<T>builder().data(getBaseService().get(id)).build(), HttpStatus.OK);
 	}
 
 	@GetMapping
-	public List<T> findAll() {
-		return getBaseService().findAll();
+	public ResponseEntity<ApiResponse> findAll() {
+		return new ResponseEntity<>(ApiResponse.<List<T>>builder().data(getBaseService().findAll()).build(),
+									HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<T> create(@Valid @RequestBody final T entity) {
-		final T savedEntity = getBaseService().create(entity);
-		return new ResponseEntity<>(savedEntity, HttpStatus.CREATED);
+	public ResponseEntity<ApiResponse> create(@Valid @RequestBody final T entity) {
+		return new ResponseEntity<>(ApiResponse.<T>builder().data(getBaseService().create(entity)).build(),
+									HttpStatus.CREATED);
 	}
 
 	@PutMapping

@@ -40,23 +40,23 @@ public class DataLoader implements ApplicationRunner {
 
 	@Override
 	public void run(final ApplicationArguments args) throws ExecutionException, InterruptedException {
-		log.debug("Create sample users");
+		log.trace("Create sample users");
 		for (int i = 0; i < 5; i++) {
 			userService.create(createUser());
 		}
-		log.debug("Create sample categories");
+		log.trace("Create sample categories");
 		for (int i = 0; i < 5; i++) {
 			categoryService.create(createCategory());
 		}
 		final List<Category> categories = categoryService.findAll();
-		log.debug("Create sample products");
+		log.trace("Create sample products");
 		for (int i = 0; i < 10; i++) {
 			productService.create(createProduct(categories));
 		}
 
 		final List<User> registeredUsers = userService.findAll();
 		final List<Product> products = productService.findAll();
-		log.debug("Create sample orders");
+		log.trace("Create sample orders");
 		for (int i = 0; i < 10; i++) {
 			orderService.create(createOrder(registeredUsers, products));
 		}
@@ -66,7 +66,7 @@ public class DataLoader implements ApplicationRunner {
 		final CompletableFuture<List<Product>> productsAsync = productService.findAllAsync();
 		final CompletableFuture<List<Order>> ordersAsync = orderService.findAllAsync();
 
-		log.debug("Async mode. Users: {}, Categories: {}, Products: {}, Orders: {}.",
+		log.trace("Async mode. Users: {}, Categories: {}, Products: {}, Orders: {}.",
 				  usersAsync.get().size(), categoriesAsync.get().size(), productsAsync.get().size(),
 				  ordersAsync.get().size());
 	}

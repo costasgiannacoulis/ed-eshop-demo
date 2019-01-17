@@ -18,7 +18,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 
 	@PostConstruct
 	private void init() {
-		log.debug("Starting {}.", this.getClass().getName());
+		log.trace("Starting {}.", this.getClass().getName());
 	}
 
 	@Override
@@ -30,38 +30,38 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 
 	@Override
 	public T create(final T entity) {
-		log.debug("Creating {}.", entity);
+		log.trace("Creating {}.", entity);
 		return getRepository().save(entity);
 	}
 
 	@Override
 	public void update(final T entity) {
-		log.debug("Updating {}.", entity);
+		log.trace("Updating {}.", entity);
 		getRepository().save(entity);
 	}
 
 	@Override
 	public void deleteById(final Long id) {
 		final T entityFound = getRepository().getOne(id);
-		log.debug("Deleting {}.", entityFound);
+		log.trace("Deleting {}.", entityFound);
 		getRepository().deleteById(id);
 	}
 
 	@Override
 	public void delete(final T entity) {
-		log.debug("Deleting {}.", entity);
+		log.trace("Deleting {}.", entity);
 		getRepository().delete(entity);
 	}
 
 	@Override
 	public boolean exists(final T entity) {
-		log.debug("Checking whether {} exists.", entity);
+		log.trace("Checking whether {} exists.", entity);
 		return getRepository().existsById(entity.getId());
 	}
 
 	@Override
 	public T get(final Long id) {
-		log.debug("Retrieving entity with id {}.", id);
+		log.trace("Retrieving entity with id {}.", id);
 		/*
 		 * T findOne(ID id) (name in the old API) / Optional<T> findById(ID id) (name in the new API) relies on
 		 * EntityManager.find() that performs an entity eager loading.
@@ -74,7 +74,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 
 	@Override
 	public List<T> findAll() {
-		log.debug("Retrieving all entities.");
+		log.trace("Retrieving all entities.");
 		return getRepository().findAll();
 	}
 
@@ -87,6 +87,6 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	@Override
 	@Async("asyncExecutor")
 	public void checkAsync() {
-		log.debug("Running asynchronously.");
+		log.trace("Running asynchronously.");
 	}
 }

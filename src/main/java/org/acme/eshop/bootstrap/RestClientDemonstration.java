@@ -22,14 +22,14 @@ public class RestClientDemonstration implements ApplicationRunner {
 
 		final ResponseEntity<User> userRetrieved = restTemplate.getForEntity("http://localhost:8080/users/1",
 																			 User.class);
-		log.debug("Status returned {} for user {}.", userRetrieved.getStatusCode(), userRetrieved.getBody());
+		log.trace("Status returned {} for user {}.", userRetrieved.getStatusCode(), userRetrieved.getBody());
 
 		final ResponseEntity<Product[]> productsRetrieved = restTemplate.getForEntity("http://localhost:8080/products",
 																					  Product[].class);
-		log.debug("Status returned {} for {} products.", productsRetrieved.getStatusCode(),
+		log.trace("Status returned {} for {} products.", productsRetrieved.getStatusCode(),
 				  productsRetrieved.getBody().length);
 
 		final Order[] ordersRetrieved = restTemplate.getForObject("http://localhost:8080/orders", Order[].class);
-		log.debug("Returned {} orders.", ordersRetrieved.length);
+		log.trace("Returned {} orders.", ordersRetrieved.length);
 	}
 }

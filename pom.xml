@@ -29,6 +29,7 @@
 		<maven-source-plugin.version>3.0.1</maven-source-plugin.version>
 		<versions-maven-plugin.version>2.7</versions-maven-plugin.version>
 		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+		<native2ascii-maven-plugin.version>2.0.1</native2ascii-maven-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -143,7 +144,31 @@
 					</archive>
 				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>native2ascii-maven-plugin</artifactId>
+				<version>${native2ascii-maven-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>utf8-to-latin1</id>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+						<phase>process-resources</phase>
+						<configuration>
+							<srcDir>src/main/resources</srcDir>
+							<targetDir>${project.build.outputDirectory}</targetDir>
+							<encoding>${project.build.sourceEncoding}</encoding>
+							<includes>
+								<include>**/*.properties</include>
+							</includes>
+							<excludes>
+								<exclude></exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-scm-plugin</artifactId>

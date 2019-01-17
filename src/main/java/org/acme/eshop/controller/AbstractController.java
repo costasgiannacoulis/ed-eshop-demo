@@ -63,11 +63,6 @@ public abstract class AbstractController<T extends BaseEntity> {
 		}
 	}
 
-	/**
-	 * Patches the entity.
-	 *
-	 * @param entity the entity to patch.
-	 */
 	@PatchMapping("/{id}")
 	public void patch(@Valid @RequestBody final T entity) {
 		//TODO

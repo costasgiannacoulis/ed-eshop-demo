@@ -37,6 +37,11 @@ A sample project to demonstrate the capabilities of the **Spring Framework** and
 3. Define specific locales, enable header locale resolver and enable resource bundles.
 4. Select specific controller methods, add a second version of these and then add filtering.
 
+###  5th lab objectives
+1. Add cache support.
+2. Select one domain entity and introduce cache to respective methods.
+3. Introduce conditional caching to one method.
+
 
 ##  Appendix A
 ### SpEL

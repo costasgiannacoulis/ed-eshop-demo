@@ -31,7 +31,7 @@ public class UserController extends AbstractController<User> {
 		return userService;
 	}
 
-	@GetMapping(headers = "action=getLocalizedContentWithHeaders")
+	@GetMapping(headers = "Action=getLocalizedContentWithHeaders")
 	public ResponseEntity<ApiResponse> getLocalizedContentWithHeaders(
 		@RequestHeader(name = "Accept-Language", required = false) final Locale locale,
 		@RequestParam(name = "token", required = true) final String token) {

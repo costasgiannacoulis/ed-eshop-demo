@@ -8,6 +8,9 @@ import javax.annotation.PostConstruct;
 import org.acme.eshop.model.BaseEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.scheduling.annotation.Async;
 
@@ -29,18 +32,21 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	}
 
 	@Override
+	@CachePut(key = "#entity.getId()", cacheResolver = "dynamicCacheResolver")
 	public T create(final T entity) {
 		log.trace("Creating {}.", entity);
 		return getRepository().save(entity);
 	}
 
 	@Override
+	@CachePut(key = "#entity.getId()", cacheResolver = "dynamicCacheResolver")
 	public void update(final T entity) {
 		log.trace("Updating {}.", entity);
 		getRepository().save(entity);
 	}
 
 	@Override
+	@CacheEvict(key = "#id", cacheResolver = "dynamicCacheResolver")
 	public void deleteById(final Long id) {
 		final T entityFound = getRepository().getOne(id);
 		log.trace("Deleting {}.", entityFound);
@@ -48,6 +54,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	}
 
 	@Override
+	@CacheEvict(key = "#entity.getId()", cacheResolver = "dynamicCacheResolver")
 	public void delete(final T entity) {
 		log.trace("Deleting {}.", entity);
 		getRepository().delete(entity);
@@ -60,6 +67,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	}
 
 	@Override
+	@Cacheable(key = "#id", cacheResolver = "dynamicCacheResolver")
 	public T get(final Long id) {
 		log.trace("Retrieving entity with id {}.", id);
 		/*
@@ -73,6 +81,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	}
 
 	@Override
+	@Cacheable(cacheResolver = "dynamicCacheResolver")
 	public List<T> findAll() {
 		log.trace("Retrieving all entities.");
 		return getRepository().findAll();
@@ -80,6 +89,7 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 
 	@Override
 	@Async("asyncExecutor")
+	@Cacheable(cacheResolver = "dynamicCacheResolver")
 	public CompletableFuture<List<T>> findAllAsync() {
 		return CompletableFuture.completedFuture(getRepository().findAll());
 	}
@@ -88,5 +98,13 @@ public abstract class AbstractService<T extends BaseEntity> implements BaseServi
 	@Async("asyncExecutor")
 	public void checkAsync() {
 		log.trace("Running asynchronously.");
+	}
+
+	protected final void simulateSlowService() {
+		try {
+			Thread.sleep(2000L);
+		} catch (final InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

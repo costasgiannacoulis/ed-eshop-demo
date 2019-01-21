@@ -20,8 +20,10 @@ public class CacheStatistics {
 	public void defaultCacheStatistics() {
 		log.debug("--------------------------------------------------------");
 		log.debug("Displaying cache names and sizes.");
+
 		final AtomicInteger index = new AtomicInteger(1);
-		cacheManager.getCacheNames().parallelStream().map(name -> cacheManager.getCache(name)).
+
+		cacheManager.getCacheNames().stream().sorted().map(name -> cacheManager.getCache(name)).
 			forEach(cache -> log.debug("{}. Cache \"{}\" has the size of {}.", index.getAndIncrement(),
 									   cache.getName(),
 									   ((ConcurrentHashMap) cache.getNativeCache()).size()));

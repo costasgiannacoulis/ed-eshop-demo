@@ -35,12 +35,4 @@ public class CategoryServiceImpl extends AbstractService<Category> implements Ca
 		simulateSlowService();
 		return getRepository().findAll().stream().limit(3).collect(Collectors.toList());
 	}
-
-	private void simulateSlowService() {
-		try {
-			Thread.sleep(2000L);
-		} catch (final InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
 }

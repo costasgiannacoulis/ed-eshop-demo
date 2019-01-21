@@ -21,7 +21,7 @@ public class CategoryServiceImpl extends AbstractService<Category> implements Ca
 	}
 
 	@Override
-	@Cacheable(value = "categories-static-cache", keyGenerator = "CustomCacheKeyGenerator")
+	@Cacheable(value = "Categories-Static-Cache", keyGenerator = "CustomCacheKeyGenerator")
 	public List<Category> findAllCacheableCategories() {
 		log.debug("Retrieving all categories.");
 		simulateSlowService();
@@ -29,7 +29,7 @@ public class CategoryServiceImpl extends AbstractService<Category> implements Ca
 	}
 
 	@Override
-	@Cacheable(value = "categories-static-cache", keyGenerator = "CustomCacheKeyGenerator")
+	@Cacheable(value = "Categories-Static-Cache", keyGenerator = "CustomCacheKeyGenerator")
 	public List<Category> findTopCacheableCategories() {
 		log.debug("Retrieving top categories.");
 		simulateSlowService();

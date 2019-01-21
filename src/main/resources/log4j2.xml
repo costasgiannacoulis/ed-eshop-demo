@@ -26,6 +26,10 @@
 	</Appenders>
 
 	<Loggers>
+		<AsyncLogger name="org.springframework.cache" level="trace" additivity="false">
+			<AppenderRef ref="ConsoleAppender" />
+			<AppenderRef ref="RollingRandomAccessFileAppender" />
+		</AsyncLogger>
 		<AsyncLogger name="org.acme.eshop" level="debug" additivity="false">
 			<AppenderRef ref="ConsoleAppender" />
 			<AppenderRef ref="RollingRandomAccessFileAppender" />

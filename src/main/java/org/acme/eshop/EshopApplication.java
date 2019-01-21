@@ -18,9 +18,7 @@ import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
 @SpringBootApplication
 @EnableScheduling
-@PropertySource({
-	"classpath:my.properties"
-})
+@PropertySource({"classpath:my.properties"})
 public class EshopApplication {
 	public static void main(final String[] args) {
 		final ConfigurableApplicationContext context = SpringApplication.run(EshopApplication.class, args);

@@ -19,7 +19,7 @@
 				<Pattern>${LOG_PATTERN}</Pattern>
 			</PatternLayout>
 			<Policies>
-				<SizeBasedTriggeringPolicy size="50KB" />
+				<SizeBasedTriggeringPolicy size="1024KB" />
 			</Policies>
 			<DefaultRolloverStrategy max="10" />
 		</RollingRandomAccessFile>

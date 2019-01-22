@@ -24,9 +24,8 @@ public class CategoryController extends AbstractController<Category> {
 		return categoryService;
 	}
 
-	@Override
 	@GetMapping(headers = {"Action=allCacheableCategories"})
-	public ResponseEntity<ApiResponse> findAll() {
+	public ResponseEntity<ApiResponse> findAllCategories() {
 		return new ResponseEntity<>(
 			ApiResponse.<List<Category>>builder().data(categoryService.findAllCacheableCategories()).build(),
 			HttpStatus.OK);

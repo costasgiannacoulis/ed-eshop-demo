@@ -6,7 +6,6 @@ import org.acme.eshop.model.User;
 import org.acme.eshop.model.system.ApiResponse;
 import org.acme.eshop.service.BaseService;
 import org.acme.eshop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.http.HttpStatus;
@@ -17,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController extends AbstractController<User> {
-	@Autowired
-	UserService userService;
-
-	@Autowired
-	MessageSource messageSource;
+	private final UserService userService;
+	private final MessageSource messageSource;
 
 	@Override
 	public BaseService<User, Long> getBaseService() {

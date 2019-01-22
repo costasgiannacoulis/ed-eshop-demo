@@ -12,12 +12,12 @@ import org.acme.eshop.service.CategoryService;
 import org.acme.eshop.service.OrderService;
 import org.acme.eshop.service.ProductService;
 import org.acme.eshop.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import static org.acme.eshop.util.ContentGenerator.createCategory;
@@ -27,16 +27,13 @@ import static org.acme.eshop.util.ContentGenerator.createUser;
 
 @Component
 @Profile("bootstrap")
+@RequiredArgsConstructor
 @Slf4j
 public class DataLoader implements ApplicationRunner {
-	@Autowired
-	CategoryService categoryService;
-	@Autowired
-	OrderService orderService;
-	@Autowired
-	ProductService productService;
-	@Autowired
-	UserService userService;
+	private final CategoryService categoryService;
+	private final OrderService orderService;
+	private final ProductService productService;
+	private final UserService userService;
 
 	@Override
 	public void run(final ApplicationArguments args) throws ExecutionException, InterruptedException {

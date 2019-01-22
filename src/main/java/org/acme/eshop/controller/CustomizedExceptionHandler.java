@@ -14,12 +14,11 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 @RestControllerAdvice
 public class CustomizedExceptionHandler {
-
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<ApiResponse> handleAllExceptions(final Exception ex, final WebRequest request) {
 		return new ResponseEntity<>(
 			ApiResponse.builder().apiError(getApiError(ex, HttpStatus.INTERNAL_SERVER_ERROR, request)).build(),
-									HttpStatus.INTERNAL_SERVER_ERROR);
+			HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(MissingServletRequestParameterException.class)

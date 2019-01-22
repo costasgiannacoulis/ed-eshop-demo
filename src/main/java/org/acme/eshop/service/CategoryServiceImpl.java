@@ -5,15 +5,16 @@ import java.util.stream.Collectors;
 
 import org.acme.eshop.model.Category;
 import org.acme.eshop.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service("categoryService")
+@RequiredArgsConstructor
 public class CategoryServiceImpl extends AbstractService<Category> implements CategoryService {
-	@Autowired
-	private CategoryRepository categoryRepository;
+	private final CategoryRepository categoryRepository;
 
 	@Override
 	public JpaRepository<Category, Long> getRepository() {

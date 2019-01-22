@@ -11,22 +11,20 @@ import org.acme.eshop.repository.CategoryRepository;
 import org.acme.eshop.repository.OrderRepository;
 import org.acme.eshop.repository.ProductRepository;
 import org.acme.eshop.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Profile("async")
 @Service
+@RequiredArgsConstructor
 public class AsyncServiceImpl {
-	@Autowired
-	private CategoryRepository categoryRepository;
-	@Autowired
-	private OrderRepository orderRepository;
-	@Autowired
-	private ProductRepository productRepository;
-	@Autowired
-	private UserRepository userRepository;
+	private final CategoryRepository categoryRepository;
+	private final OrderRepository orderRepository;
+	private final ProductRepository productRepository;
+	private final UserRepository userRepository;
 
 	@Async("asyncExecutor")
 	public CompletableFuture<List<Category>> findAllCategories() {

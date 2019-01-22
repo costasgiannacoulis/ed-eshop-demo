@@ -41,23 +41,23 @@ public class DataLoader implements ApplicationRunner {
 	@Override
 	public void run(final ApplicationArguments args) throws ExecutionException, InterruptedException {
 		log.trace("Create sample users");
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			userService.create(createUser());
 		}
 		log.trace("Create sample categories");
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 10; i++) {
 			categoryService.create(createCategory());
 		}
 		final List<Category> categories = categoryService.findAll();
 		log.trace("Create sample products");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 30; i++) {
 			productService.create(createProduct(categories));
 		}
 
 		final List<User> registeredUsers = userService.findAll();
 		final List<Product> products = productService.findAll();
 		log.trace("Create sample orders");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 50; i++) {
 			orderService.create(createOrder(registeredUsers, products));
 		}
 
@@ -66,8 +66,7 @@ public class DataLoader implements ApplicationRunner {
 		final CompletableFuture<List<Product>> productsAsync = productService.findAllAsync();
 		final CompletableFuture<List<Order>> ordersAsync = orderService.findAllAsync();
 
-		log.trace("Async mode. Users: {}, Categories: {}, Products: {}, Orders: {}.",
-				  usersAsync.get().size(), categoriesAsync.get().size(), productsAsync.get().size(),
-				  ordersAsync.get().size());
+		log.trace("Async mode. Users: {}, Categories: {}, Products: {}, Orders: {}.", usersAsync.get().size(),
+				  categoriesAsync.get().size(), productsAsync.get().size(), ordersAsync.get().size());
 	}
 }

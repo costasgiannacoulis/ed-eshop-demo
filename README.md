@@ -42,6 +42,9 @@ A sample project to demonstrate the capabilities of the **Spring Framework** and
 2. Select one domain entity and introduce cache to respective methods.
 3. Introduce conditional caching to one method.
 
+###  6th lab objectives
+1. Add reporting capabilities. In more details, we need to create a RESTful endpoint returning an Excel file containing the list of submitted orders with respective number of order items and total cost.
+
 
 ##  Appendix A
 ### SpEL

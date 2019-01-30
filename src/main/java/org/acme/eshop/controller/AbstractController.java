@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.acme.eshop.model.BaseEntity;
 import org.acme.eshop.model.system.ApiResponse;
 import org.acme.eshop.service.BaseService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,9 +19,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public abstract class AbstractController<T extends BaseEntity> {
 	protected abstract BaseService<T, Long> getBaseService();
 
@@ -66,5 +64,19 @@ public abstract class AbstractController<T extends BaseEntity> {
 	@PatchMapping("/{id}")
 	public void patch(@Valid @RequestBody final T entity) {
 		//TODO
+	}
+
+	protected HttpHeaders getNoCacheHeaders() {
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+		headers.add("Pragma", "no-cache");
+		headers.add("Expires", "0");
+		return headers;
+	}
+
+	protected HttpHeaders getDownloadHeaders(final String filename) {
+		final HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Disposition", "attachment; filename=" + filename);
+		return headers;
 	}
 }

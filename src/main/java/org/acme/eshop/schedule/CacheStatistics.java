@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CacheStatistics {
 	private final CacheManager cacheManager;
 
-	@Scheduled(cron = "0/15 * * * * *")
+	@Scheduled(cron = "0 * * * * *")
 	public void defaultCacheStatistics() {
 		log.debug("--------------------------------------------------------");
 		log.debug("Displaying cache names and sizes.");

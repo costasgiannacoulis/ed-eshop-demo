@@ -34,10 +34,6 @@
 			<AppenderRef ref="ConsoleAppender" />
 			<AppenderRef ref="RollingRandomAccessFileAppender" />
 		</AsyncLogger>
-		<AsyncLogger name="org.acme.eshop.repository" level="info" additivity="false">
-			<AppenderRef ref="ConsoleAppender" />
-			<AppenderRef ref="RollingRandomAccessFileAppender" />
-		</AsyncLogger>
 
 		<Root level="info">
 			<AppenderRef ref="ConsoleAppender" />

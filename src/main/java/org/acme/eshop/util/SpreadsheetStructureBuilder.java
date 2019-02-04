@@ -22,7 +22,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.http.MediaType;
 
-public class SpreadsheetReportGenerator {
+public class SpreadsheetStructureBuilder {
 	public final static String DATEFORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 	public final static DateFormat DATEFORMAT = new SimpleDateFormat(DATEFORMAT_PATTERN);
 	public final static String DEFAULT_FONT = "Tahoma";
@@ -90,7 +90,7 @@ public class SpreadsheetReportGenerator {
 		currencyCellStyle.setDataFormat((short) 7);
 	}
 
-	public SpreadsheetReportGenerator(final String sheetTitle) {
+	public SpreadsheetStructureBuilder(final String sheetTitle) {
 		sheet = workbook.createSheet(sheetTitle);
 		sheet.setDefaultColumnWidth(DEFAULT_COLUMN_WIDTH);
 	}

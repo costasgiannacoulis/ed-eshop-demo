@@ -16,7 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -36,7 +35,7 @@ import lombok.ToString;
 @Builder
 @ToString(callSuper = true, exclude = "orderItems")
 @EqualsAndHashCode(callSuper = true)
-@JsonFilter("dynaFilter")
+//@JsonFilter("dynaFilter")
 public class Order extends BaseEntity {
 	private static final long serialVersionUID = -7235073958033713360L;
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
